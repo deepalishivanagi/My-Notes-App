@@ -1,41 +1,86 @@
 import "./App.css";
-import logo from "./logo.png";
+import ToDoInputBox from './ToDoInputBox';
+import ActiveNotes from './ActiveNotes';
+import DeletedNotes from './DeletedNotes';
+import { useReducer, useState } from 'react';
+import { StaticNotesData } from './StaticNotesData';
+import { initialState, reducer } from "./AppReducer";
+
 
 function App() {
+
+  const [state,dispatch] = useReducer(reducer,initialState);
+  // const [NotesTakenArray,setNotesTakenArray]=useState(StaticNotesData);
+  // const [id,setid]=useState(3);
+
+  // function AddtoNotesArray(message){
+  //   var TempArray=JSON.parse(JSON.stringify(NotesTakenArray));
+  //   var Tempid=id+1;
+  //   TempArray.push({content:message,recover:1,delete:0,id:Tempid});
+  //   setNotesTakenArray(TempArray);
+  //   setid(Tempid);
+  // }
+
+  // function ActiveDeleteHandler(id){
+  //   var TempArray=JSON.parse(JSON.stringify(NotesTakenArray));
+  //   for(let i=0;i<NotesTakenArray.length;i++)
+  //   {
+  //     if(NotesTakenArray[i].id==id)
+  //     {
+  //       TempArray[i].delete=1;
+  //       TempArray[i].recover=0;
+  //       break;
+  //     }
+  //   }
+  //   setNotesTakenArray(TempArray);
+  // }
+
+  // function DeletedRecoverHandler(id){
+  //   var TempArray=JSON.parse(JSON.stringify(NotesTakenArray));
+  //   for(let i=0;i<NotesTakenArray.length;i++)
+  //   {
+  //     if(NotesTakenArray[i].id==id)
+  //     {
+  //       TempArray[i].delete=0;
+  //       TempArray[i].recover=1;
+  //       break;
+  //     }
+  //   }
+  //   setNotesTakenArray(TempArray);
+  // }
+
+  // function PermanentDeleteHandler(id){
+  //   var TempArray=JSON.parse(JSON.stringify(NotesTakenArray));
+  //   for(let i=0;i<NotesTakenArray.length;i++)
+  //   {
+  //     if(NotesTakenArray[i].id==id)
+  //     {
+  //       TempArray[i].delete=0;
+  //       TempArray[i].recover=0;
+  //       break;
+  //     }
+  //   }
+  //   setNotesTakenArray(TempArray);
+
+  // }
+
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} alt="mockBee logo" width="180" height="180" />
-        <h1 className="brand-title">
-          Welcome to <span>mockBee!</span>
-        </h1>
-        <p className="brand-description">
-          Get started by editing <code>src/App.js</code>
-        </p>
-        <div className="links">
-          <a
-            href="https://mockbee.netlify.app/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Explore mockBee
-          </a>
-          <a
-            href="https://mockbee.netlify.app/docs/api/introduction"
-            target="_blank"
-            rel="noreferrer"
-          >
-            API Documentation
-          </a>
-          <a
-            href="https://github.com/neogcamp/mockBee"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Contribute
-          </a>
-        </div>
+        <h2>Let's note down everything</h2>
       </header>
+      <div>
+        <ToDoInputBox  state={state} dispatch={dispatch}/>
+      </div>
+      <hr></hr>
+      <div>      
+        <ActiveNotes state={state} dispatch={dispatch}/>
+      </div>
+      <hr></hr>
+      <div>    
+        <DeletedNotes state={state} dispatch={dispatch}/>
+      </div>
     </div>
   );
 }

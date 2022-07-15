@@ -1,0 +1,4 @@
+.Active-notes-list {
+    display: flex;
+    justify-content: space-around;
+}

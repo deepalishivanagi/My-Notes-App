@@ -25,6 +25,7 @@ import {
 import { users } from "./backend/db/users";
 
 export function makeServer({ environment = "development" } = {}) {
+  console.log("HI  Manjunath test");
   const server = new Server({
     serializers: {
       application: RestSerializer,
@@ -49,7 +50,8 @@ export function makeServer({ environment = "development" } = {}) {
     },
 
     routes() {
-      this.namespace = "api";
+ 
+     this.namespace = "api";
 
       // auth routes (public)
       this.post("/auth/signup", signupHandler.bind(this));
